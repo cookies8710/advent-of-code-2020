@@ -16,19 +16,17 @@
         (recur (+ i 1))))
     (recur (+ j 1))))
 
-(def cont true)
 (loop [j 0]
-  (when (and cont (< j (count content)))
+  (when (< j (count content))
     (loop [i (+ j 1)]
-      (when (and cont (< i (count content)))
-        (loop [k (+ j 1)]
-          (when (and cont (< k (count content)))
+      (when (< i (count content))
+        (loop [k (+ i 1)]
+          (when (< k (count content))
             (def a (Integer/parseInt (get content i)))
             (def b (Integer/parseInt (get content j)))
             (def c (Integer/parseInt (get content k)))
             (when (= 2020 (+ a b c))
-              (println "Part 2: " (* a b c))
-              (def cont false))
+              (println "Part 2: " (* a b c)))
           (recur (+ k 1))))
         (recur (+ i 1))))
     (recur (+ j 1))))
